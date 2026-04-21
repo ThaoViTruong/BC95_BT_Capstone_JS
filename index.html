@@ -1,13 +1,123 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Home page</title>
-    <!-- library -->
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-</head>
-<body>
-    <h1 class="text-3xl font-bold text-center">This is the Home page</h1>
-</body>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+      integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+  </head>
+  <body>
+    <nav
+      class="fixed inset-x-0 top-0 z-50 border-b border-teal-100 bg-white/80 backdrop-blur"
+    >
+      <div
+        class="mx-auto flex h-20 max-w-7xl items-center justify-between px-6"
+      >
+        <div class="flex items-center gap-2">
+          <span
+            class="text-2xl font-bold uppercase tracking-tight text-teal-700"
+            >Cyber phone</span
+          >
+        </div>
+        <div
+          class="hidden  items-center gap-8 text-sm font-semibold text-slate-600 md:flex"
+        >
+          <a
+            class="transition-colors hover:text-teal-600 text-lg"
+            href="#"
+            >Services</a
+          >
+          <a
+            class="transition-colors hover:text-teal-600 text-lg"
+            href="#"
+            >Portfolio</a
+          >
+          <a
+            class="transition-colors hover:text-teal-600 text-lg"
+            href="#"
+            >Contact</a
+          >
+        </div>
+      </div>
+    </nav>
+    <main
+      class="relative flex min-h-screen items-center justify-center overflow-hidden pt-24 pb-20"
+    >
+      <div
+        class="absolute -top-24 -right-24 -z-10 h-96 w-96 rounded-full bg-teal-200/40 blur-3xl"
+      ></div>
+      <div
+        class="absolute -bottom-28 -left-28 -z-10 h-[28rem] w-[28rem] rounded-full bg-emerald-200/30 blur-3xl"
+      ></div>
+      <div class="mx-auto w-full max-w-4xl px-6">
+        <div class="grid gap-8 md:grid-cols-2">
+          <a class="group block" href="#">
+            <div
+              class="flex h-full flex-col items-center justify-center rounded-2xl border border-slate-200 bg-white p-12 shadow-sm transition hover:-translate-y-2 hover:shadow-lg"
+            >
+              <div
+                class="mb-8 flex h-28 w-28 items-center justify-center rounded-full bg-teal-50 transition group-hover:scale-110"
+              >
+                <i
+                  class="fa-solid fa-basket-shopping text-6xl text-teal-700"
+                ></i>
+              </div>
+              <h2 class="text-center text-3xl font-bold text-slate-900">
+                Customer</h2>
+            </div>
+          </a>
+          <a class="group block" href="#">
+            <div
+              class="flex h-full flex-col items-center justify-center rounded-2xl border border-slate-200 bg-white p-12 shadow-sm transition hover:-translate-y-2 hover:shadow-lg"
+            >
+              <div
+                class="mb-8 flex h-28 w-28 items-center justify-center rounded-full bg-teal-50 transition group-hover:scale-110"
+              >
+                <i class="fa-solid fa-user-gear text-6xl text-teal-700"></i>
+              </div>
+              <h2 class="text-center text-3xl font-bold text-slate-900">Admin</h2>
+            </div>
+          </a>
+        </div>
+      </div>
+    </main>
+    <footer class="border-t border-slate-200 bg-slate-50 py-10">
+      <div
+        class="mx-auto flex max-w-7xl flex-col items-center justify-between gap-6 px-6 text-center md:flex-row md:text-left"
+      >
+        <div>
+          <span class="text-lg font-bold text-teal-700">Cyber phone</span>
+          <p class="mt-2 text-xs uppercase tracking-widest text-slate-500">
+            © 2026 Cyber phone. All rights reserved.
+          </p>
+        </div>
+        <div
+          class="flex flex-wrap justify-center gap-6 text-xs uppercase tracking-widest text-slate-500"
+        >
+          <a
+            class="transition-colors hover:text-teal-600 hover:underline"
+            href="#"
+            >Privacy Policy</a
+          >
+          <a
+            class="transition-colors hover:text-teal-600 hover:underline"
+            href="#"
+            >Terms of Service</a
+          >
+          <a
+            class="transition-colors hover:text-teal-600 hover:underline"
+            href="#"
+            >Support</a
+          >
+        </div>
+      </div>
+    </footer>
+  </body>
 </html>
