@@ -68,6 +68,7 @@
   const init = async () => {
     bindCartPopupEvents();
     window.shoppingCartController?.bindEvents(els, utils);
+    window.productDetailController?.initProductPopupEvents();
 
     const data = await window.getDataPhone?.();
     state.products = Array.isArray(data) ? data.map((x) => new Product(x)) : [];
