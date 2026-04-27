@@ -35,7 +35,7 @@ export const createProduct = async () => {
 
   } catch (error) {
     console.log(error);
-    alert("Có lỗi xảy ra khi tạo mới sản phẩm");
+    showMessage("❌ Có lỗi xảy ra khi tạo mới sản phẩm", "error");
   }
 };
 
@@ -79,16 +79,24 @@ window.editProduct = async (id) => {
 
 // ================= UPDATE =================
 export const updateProduct = async () => {
-  const data = getFormData();
-  if (!validate(data)) return;
+  try {
+    const data = getFormData();
+    if (!validate(data)) return;
 
-  await axios.put(`${BASE_URL}/${state.editingId}`, data);
+    await axios.put(`${BASE_URL}/${state.editingId}`, data);
 
-  elements.btnSave.classList.remove("hidden");
-  elements.btnUpdate.classList.add("hidden");
+    showMessage("✅ Cập nhật thành công");
 
-  elements.form.reset();
-  fetchProducts();
+    elements.btnSave.classList.remove("hidden");
+    elements.btnUpdate.classList.add("hidden");
+
+    elements.form.reset();
+    fetchProducts();
+
+  } catch (error) {
+    console.log(error);
+    showMessage("❌ Có lỗi xảy ra khi cập nhật", "error");
+  }
 };
 
 // ================= SEARCH =================
@@ -110,9 +118,10 @@ export const sortByPrice = (order) => {
 
 // ================= VALIDATION =================
 const validate = (p) => {
-  if (!p.name || !p.price || !p.type) {
+  if (!p.name || p.price <= 0 || !p.type) {
     showMessage("❌ Vui lòng nhập đầy đủ thông tin", "error");
     return false;
   }
   return true;
 };
+
