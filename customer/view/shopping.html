@@ -1,9 +1,9 @@
 <!doctype html>
-<html lang="en">
+<html lang="vi">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Shopping</title>
+    <title>Mua sắm</title>
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <link
       rel="stylesheet"
@@ -31,7 +31,7 @@
             id="cartButton"
             type="button"
             class="relative inline-flex h-11 w-11 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-700 shadow-sm outline-none transition hover:bg-slate-50 focus:ring-2 focus:ring-teal-200"
-            aria-label="Open cart"
+            aria-label="Mở giỏ hàng"
           >
             <i class="fa-solid fa-cart-shopping text-lg"></i>
             <span
@@ -49,30 +49,30 @@
         <div class="flex flex-wrap items-center justify-between gap-4">
           <div class="flex items-center gap-3">
             <span class="text-xs font-semibold uppercase tracking-widest text-slate-500"
-              >Filter by</span
+              >Lọc theo</span
             >
             <select
               id="typeSelect"
               class="rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-700 shadow-sm outline-none transition focus:border-teal-300 focus:ring-2 focus:ring-teal-200"
             >
-              <option value="">All</option>
+              <option value="">Tất cả</option>
               <option value="samsung">Samsung</option>
               <option value="iphone">iPhone</option>
             </select>
             <span class="text-xs font-semibold uppercase tracking-widest text-slate-500"
-              >Sort</span
+              >Sắp xếp</span
             >
             <select
               id="sortSelect"
               class="rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-700 shadow-sm outline-none transition focus:border-teal-300 focus:ring-2 focus:ring-teal-200"
             >
-              <option value="">Default</option>
-              <option value="price_asc">Price: Low to High</option>
-              <option value="price_desc">Price: High to Low</option>
+              <option value="">Mặc định</option>
+              <option value="price_asc">Giá: Thấp đến cao</option>
+              <option value="price_desc">Giá: Cao đến thấp</option>
             </select>
           </div>
           <div class="text-sm font-semibold text-slate-500">
-            <span id="resultText">Showing 0 products</span>
+            <span id="resultText">Đang hiển thị 0 sản phẩm</span>
           </div>
         </div>
 
@@ -92,12 +92,12 @@
       <div class="relative mx-auto mt-20 w-full max-w-2xl px-4 sm:px-6">
         <div class="rounded-3xl border border-slate-200 bg-white shadow-2xl">
           <div class="flex flex-wrap items-center justify-between gap-4 border-b border-slate-100 px-6 py-5">
-            <h2 class="text-lg font-bold text-slate-900">Product details</h2>
+            <h2 class="text-lg font-bold text-slate-900">Chi tiết sản phẩm</h2>
             <button
               id="productPopupClose"
               type="button"
               class="inline-flex h-10 w-10 items-center justify-center rounded-full text-slate-500 outline-none transition hover:bg-slate-100 hover:text-slate-800 focus:ring-2 focus:ring-teal-200"
-              aria-label="Close"
+              aria-label="Đóng"
             >
               <i class="fa-solid fa-xmark text-xl"></i>
             </button>
@@ -108,15 +108,15 @@
     </div>
 
     <!-- Cart Popup -->
-    <div id="cartPopup" class="fixed inset-0 z-50 hidden">
-      <div id="cartPopupBackdrop" class="absolute inset-0 bg-slate-900/40"></div>
-      <div class="relative mx-auto mt-20 w-full max-w-6xl px-4 sm:px-6">
+    <div id="cartPopup" class="fixed inset-0 z-50 hidden overflow-y-auto">
+      <div id="cartPopupBackdrop" class="fixed inset-0 bg-slate-900/40"></div>
+      <div class="relative mx-auto my-20 w-full max-w-6xl px-4 sm:px-6">
         <div class="rounded-3xl border border-slate-200 bg-white shadow-2xl">
           <div class="flex flex-wrap items-center justify-between gap-4 border-b border-slate-100 px-6 py-5">
-            <h2 class="text-lg font-bold text-slate-900">Cart</h2>
+            <h2 class="text-lg font-bold text-slate-900">Giỏ hàng</h2>
             <div class="flex items-center gap-3">
               <div class="inline-flex items-center gap-2 text-sm font-semibold text-slate-600">
-                <span>Items:</span>
+                <span>Số món:</span>
                 <span
                   id="cartCountText"
                   class="inline-flex min-w-8 justify-center rounded-full bg-slate-900 px-3 py-1 text-xs font-bold text-white"
@@ -127,7 +127,7 @@
                 id="cartPopupClose"
                 type="button"
                 class="inline-flex h-10 w-10 items-center justify-center rounded-full text-slate-500 outline-none transition hover:bg-slate-100 hover:text-slate-800 focus:ring-2 focus:ring-teal-200"
-                aria-label="Close cart"
+                aria-label="Đóng giỏ hàng"
               >
                 <i class="fa-solid fa-xmark text-xl"></i>
               </button>
@@ -146,24 +146,24 @@
               <h3
                 class="text-xs font-bold uppercase tracking-widest text-slate-700"
               >
-                Order summary
+                Tóm tắt đơn hàng
               </h3>
 
               <dl class="mt-4 space-y-3 text-sm">
                 <div class="flex items-center justify-between gap-3">
-                  <dt class="text-slate-600">Subtotal</dt>
+                  <dt class="text-slate-600">Tạm tính</dt>
                   <dd id="cartSubtotal" class="font-semibold text-slate-900">
                     $0
                   </dd>
                 </div>
                 <div class="flex items-center justify-between gap-3">
-                  <dt class="text-slate-600">Shipping</dt>
+                  <dt class="text-slate-600">Phí vận chuyển</dt>
                   <dd id="cartShipping" class="font-semibold text-teal-700">
-                    Free
+                    Miễn phí
                   </dd>
                 </div>
                 <div class="flex items-center justify-between gap-3">
-                  <dt class="text-slate-600">Estimated tax</dt>
+                  <dt class="text-slate-600">Thuế ước tính</dt>
                   <dd id="cartTax" class="font-semibold text-slate-900">$0</dd>
                 </div>
               </dl>
@@ -172,7 +172,7 @@
                 class="mt-4 flex items-end justify-between gap-4 border-t border-slate-200 pt-4"
               >
                 <div class="text-sm font-semibold text-slate-700">
-                  Total
+                  Tổng cộng
                 </div>
                 <div
                   id="cartTotal"
@@ -187,13 +187,205 @@
                 type="button"
                 class="mt-5 inline-flex w-full items-center justify-center rounded-full bg-slate-900 px-4 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-slate-800 active:scale-[0.99] disabled:cursor-not-allowed disabled:bg-slate-300"
               >
-                Checkout
+                Thanh toán
               </button>
 
               <p class="mt-3 text-xs leading-relaxed text-slate-500">
-                Checkout details are encrypted and protected during the transaction.
+                Thông tin thanh toán được mã hóa và bảo vệ trong suốt quá trình giao dịch.
               </p>
             </aside>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Checkout Modal -->
+    <div id="checkoutModal" class="fixed inset-0 z-[60] hidden overflow-y-auto">
+      <div id="checkoutModalBackdrop" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm"></div>
+      <div class="relative mx-auto my-10 w-full max-w-4xl px-4 pb-10 sm:px-6">
+        <div class="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-2xl">
+          <!-- Header -->
+          <div class="flex items-center justify-between border-b border-slate-100 px-6 py-5">
+            <h2 class="text-xl font-bold text-slate-900">Thanh toán</h2>
+            <button id="checkoutModalClose" type="button" class="inline-flex h-10 w-10 items-center justify-center rounded-full text-slate-500 hover:bg-slate-100">
+              <i class="fa-solid fa-xmark text-xl"></i>
+            </button>
+          </div>
+
+          <div class="p-6">
+            <!-- Step Indicator -->
+            <div class="mb-8 flex items-center justify-center gap-4">
+              <div class="flex items-center gap-2">
+                <span id="step1Circle" class="flex h-8 w-8 items-center justify-center rounded-full bg-teal-600 text-sm font-bold text-white">1</span>
+                <span class="text-sm font-bold text-slate-900">Thông tin</span>
+              </div>
+              <div class="h-px w-12 bg-slate-200"></div>
+              <div class="flex items-center gap-2">
+                <span id="step2Circle" class="flex h-8 w-8 items-center justify-center rounded-full bg-slate-200 text-sm font-bold text-slate-500">2</span>
+                <span id="step2Text" class="text-sm font-semibold text-slate-500">Thanh toán</span>
+              </div>
+            </div>
+
+            <!-- Step 1: Thông tin khách hàng & giao hàng -->
+            <div id="checkoutStep1">
+              <form id="checkoutForm" class="space-y-8">
+                <!-- Thông tin khách hàng -->
+                <section>
+                  <h3 class="mb-4 text-sm font-bold uppercase tracking-widest text-slate-500">Thông tin khách hàng</h3>
+                  <div class="grid gap-4 md:grid-cols-2">
+                    <div class="space-y-1">
+                      <label class="text-xs font-bold text-slate-700">Họ và tên</label>
+                      <input type="text" required name="customerName" class="w-full rounded-xl border border-slate-200 px-4 py-3 text-sm focus:border-teal-500 focus:ring-2 focus:ring-teal-200" placeholder="Nhập họ và tên">
+                    </div>
+                    <div class="space-y-1">
+                      <label class="text-xs font-bold text-slate-700">Số điện thoại</label>
+                      <input type="tel" required name="customerPhone" class="w-full rounded-xl border border-slate-200 px-4 py-3 text-sm focus:border-teal-500 focus:ring-2 focus:ring-teal-200" placeholder="Nhập số điện thoại">
+                    </div>
+                    <div class="md:col-span-2 space-y-1">
+                      <label class="text-xs font-bold text-slate-700">Email</label>
+                      <input type="email" required name="customerEmail" class="w-full rounded-xl border border-slate-200 px-4 py-3 text-sm focus:border-teal-500 focus:ring-2 focus:ring-teal-200" placeholder="Nhập email">
+                    </div>
+                  </div>
+                </section>
+
+                <!-- Delivery Info -->
+                <section>
+                  <h3 class="mb-4 text-sm font-bold uppercase tracking-widest text-slate-500">Thông tin giao hàng</h3>
+                  <div class="rounded-2xl border border-slate-200 p-1">
+                    <div class="flex gap-1">
+                      <button type="button" data-tab="pickup" class="delivery-tab flex-1 rounded-xl px-4 py-3 text-sm font-bold transition bg-teal-600 text-white">
+                        <i class="fa-solid fa-store mr-2"></i>Nhận tại cửa hàng
+                      </button>
+                      <button type="button" data-tab="delivery" class="delivery-tab flex-1 rounded-xl px-4 py-3 text-sm font-bold transition text-slate-600 hover:bg-slate-50">
+                        <i class="fa-solid fa-truck-fast mr-2"></i>Giao hàng tận nơi
+                      </button>
+                    </div>
+                  </div>
+
+                  <!-- Pickup Tab Content -->
+                  <div id="pickupContent" class="mt-4 space-y-4">
+                    <div class="space-y-1">
+                      <label class="text-xs font-bold text-slate-700">Chọn cửa hàng</label>
+                      <select name="storeAddress" class="w-full rounded-xl border border-slate-200 px-4 py-3 text-sm focus:border-teal-500 focus:ring-2 focus:ring-teal-200">
+                        <option value="store1" >112 Cao Thắng, Quận 3, TP.HCM</option>
+                        <option value="store2" >459 Sư Vạn Hạnh, Quận 10, TP.HCM</option>
+                        <option value="store3" >117 Tân Cảng, Bình Thạnh, TP.HCM</option>
+                        <option value="store4" >110 Đường số 10, Park Hill City Land, Phan Văn Trị, Gò Vấp, TP.HCM</option>
+                        <option value="store5" >56 Lê Cảnh Tuân, Tân Phú, TP.HCM</option>
+                        <option value="store6" >6C Đường số 8, Linh Tây, Thủ Đức, TP.HCM</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <!-- Delivery Tab Content -->
+                  <div id="deliveryContent" class="mt-4 hidden space-y-4">
+                    <div class="grid gap-4 md:grid-cols-2">
+                      <div class="space-y-1">
+                        <label class="text-xs font-bold text-slate-700">Tên người nhận</label>
+                        <input type="text" name="recipientName" class="w-full rounded-xl border border-slate-200 px-4 py-3 text-sm focus:border-teal-500" placeholder="Nhập tên người nhận">
+                      </div>
+                      <div class="space-y-1">
+                        <label class="text-xs font-bold text-slate-700">Số điện thoại người nhận</label>
+                        <input type="tel" name="recipientPhone" class="w-full rounded-xl border border-slate-200 px-4 py-3 text-sm focus:border-teal-500" placeholder="Nhập số điện thoại người nhận">
+                      </div>
+                    </div>
+                    <div class="grid gap-4 md:grid-cols-3">
+                      <select id="addressCity" name="city" class="rounded-xl border border-slate-200 px-4 py-3 text-sm focus:border-teal-500">
+                        <option value="">Tỉnh/Thành phố</option>
+                      </select>
+                      <select id="addressDistrict" name="district" class="rounded-xl border border-slate-200 px-4 py-3 text-sm focus:border-teal-500">
+                        <option value="">Chọn Quận/Huyện</option>
+                      </select>
+                      <select id="addressWard" name="ward" class="rounded-xl border border-slate-200 px-4 py-3 text-sm focus:border-teal-500">
+                        <option value="">Chọn Phường/Xã</option>
+                      </select>
+                    </div>
+                    <input type="text" name="address" class="w-full rounded-xl border border-slate-200 px-4 py-3 text-sm focus:border-teal-500" placeholder="Số nhà, tên đường (Vui lòng chọn quận/huyện và phường/xã trước)">
+                    <div class="flex items-center gap-2">
+                      <input type="checkbox" id="saveAddress" class="h-4 w-4 rounded border-slate-300 text-teal-600 focus:ring-teal-500">
+                      <label for="saveAddress" class="text-sm text-slate-600">Lưu địa chỉ cho lần sau</label>
+                    </div>
+                    <textarea name="notes" rows="2" class="w-full rounded-xl border border-slate-200 px-4 py-3 text-sm focus:border-teal-500" placeholder="Ghi chú khác (không bắt buộc)"></textarea>
+                  </div>
+                </section>
+
+                <div class="pt-4">
+                  <button type="submit" class="w-full rounded-full bg-slate-900 py-4 text-base font-bold text-white shadow-lg transition hover:bg-slate-800 active:scale-[0.99]">
+                    Tiếp tục đến thanh toán
+                  </button>
+                </div>
+              </form>
+            </div>
+
+            <!-- Step 2: Payment Methods -->
+            <div id="checkoutStep2" class="hidden">
+              <div class="space-y-8">
+                <section>
+                  <h3 class="mb-4 text-sm font-bold uppercase tracking-widest text-slate-500">Chọn phương thức thanh toán</h3>
+                  <div class="grid gap-3">
+                    <label class="flex cursor-pointer items-center justify-between rounded-2xl border border-slate-200 p-4 transition hover:bg-slate-50">
+                      <div class="flex items-center gap-3">
+                        <input type="radio" name="paymentMethod" value="cash" checked class="h-5 w-5 border-slate-300 text-teal-600 focus:ring-teal-500">
+                        <span class="font-bold text-slate-700">Thanh toán khi nhận hàng</span>
+                      </div>
+                      <i class="fa-solid fa-money-bill-1-wave text-slate-400 text-xl"></i>
+                    </label>
+
+                    <label class="flex cursor-pointer items-center justify-between rounded-2xl border border-slate-200 p-4 transition hover:bg-slate-50">
+                      <div class="flex items-center gap-3">
+                        <input type="radio" name="paymentMethod" value="transfer" class="h-5 w-5 border-slate-300 text-teal-600 focus:ring-teal-500">
+                        <span class="font-bold text-slate-700">Chuyển khoản ngân hàng</span>
+                      </div>
+                      <i class="fa-solid fa-building-columns text-slate-400 text-xl"></i>
+                    </label>
+
+                    <label class="flex cursor-pointer items-center justify-between rounded-2xl border border-slate-200 p-4 transition hover:bg-slate-50">
+                      <div class="flex items-center gap-3">
+                        <input type="radio" name="paymentMethod" value="card" class="h-5 w-5 border-slate-300 text-teal-600 focus:ring-teal-500">
+                        <span class="font-bold text-slate-700">Thẻ tín dụng/ghi nợ</span>
+                      </div>
+                      <i class="fa-solid fa-credit-card text-slate-400 text-xl"></i>
+                    </label>
+                  </div>
+                </section>
+
+                <!-- Transfer Content (QR) -->
+                <div id="transferInfo" class="hidden rounded-2xl bg-slate-50 p-6 text-center">
+                  <p class="mb-4 text-sm font-semibold text-slate-600">Quét mã QR để thanh toán</p>
+                  <div class="mx-auto h-48 w-48 rounded-2xl bg-white p-2 shadow-sm">
+                    <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=CyberPhonePayment" alt="Mã QR" class="h-full w-full">
+                  </div>
+                  <p class="mt-4 text-xs text-slate-500">Nội dung: <span class="font-bold text-slate-900 uppercase">THANH TOÁN ĐƠN HÀNG</span></p>
+                </div>
+
+                <!-- Card Content -->
+                <div id="cardInfo" class="hidden space-y-4 rounded-2xl bg-slate-50 p-6">
+                  <div class="space-y-1">
+                    <label class="text-xs font-bold text-slate-700">Số thẻ</label>
+                    <input type="text" class="w-full rounded-xl border border-slate-200 px-4 py-3 text-sm focus:border-teal-500" placeholder="0000 0000 0000 0000">
+                  </div>
+                  <div class="grid gap-4 grid-cols-2">
+                    <div class="space-y-1">
+                      <label class="text-xs font-bold text-slate-700">Ngày hết hạn</label>
+                      <input type="text" class="w-full rounded-xl border border-slate-200 px-4 py-3 text-sm focus:border-teal-500" placeholder="MM/YY">
+                    </div>
+                    <div class="space-y-1">
+                      <label class="text-xs font-bold text-slate-700">CVV</label>
+                      <input type="password" class="w-full rounded-xl border border-slate-200 px-4 py-3 text-sm focus:border-teal-500" placeholder="***">
+                    </div>
+                  </div>
+                </div>
+
+                <div class="flex gap-4">
+                  <button id="backToStep1" type="button" class="flex-1 rounded-full border border-slate-200 py-4 text-base font-bold text-slate-600 transition hover:bg-slate-50">
+                    Quay lại
+                  </button>
+                  <button id="completePayment" type="button" class="flex-[2] rounded-full bg-teal-600 py-4 text-base font-bold text-white shadow-lg shadow-teal-200 transition hover:bg-teal-700 active:scale-[0.99]">
+                    Hoàn tất thanh toán
+                  </button>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -208,20 +400,20 @@
             >Cyber phone</a
           >
           <p class="mt-2 text-xs uppercase tracking-widest text-slate-500">
-            © 2026 Cyber phone. All rights reserved.
+            © 2026 Cyber phone. Đã đăng ký bản quyền.
           </p>
         </div>
         <div
           class="flex flex-wrap justify-center gap-6 text-xs uppercase tracking-widest text-slate-500"
         >
           <a class="transition-colors hover:text-teal-600 hover:underline" href="#"
-            >Privacy policy</a
+            >Chính sách bảo mật</a
           >
           <a class="transition-colors hover:text-teal-600 hover:underline" href="#"
-            >Terms of service</a
+            >Điều khoản dịch vụ</a
           >
           <a class="transition-colors hover:text-teal-600 hover:underline" href="#"
-            >Support</a
+            >Hỗ trợ</a
           >
         </div>
       </div>
@@ -234,7 +426,11 @@
     <script src="../services/product.service.js"></script>
     <script src="../services/shopping.utils.js"></script>
     <script src="../services/cart.storage.js"></script>
+    <script src="../services/address.data.js"></script>
+    <script src="../services/address.service.js"></script>
     <script src="../controller/shopping.cart.controller.js"></script>
+    <script src="../controller/shopping.checkout.controller.js"></script>
+    <script src="../controller/shopping.payment.controller.js"></script>
     <script src="../controller/shopping.product-detail.controller.js"></script>
     <script src="../controller/shopping.products.controller.js"></script>
     <script src="../controller/shopping.controller.js"></script>

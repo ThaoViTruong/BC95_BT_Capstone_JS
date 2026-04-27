@@ -1,4 +1,11 @@
 (() => {
+  const getTypeLabel = (type, utils) => {
+    const t = utils?.normalizeType ? utils.normalizeType(type) : String(type || "").trim().toLowerCase();
+    if (t === "iphone") return "iPhone";
+    if (t === "samsung") return "Samsung";
+    return "Khác";
+  };
+
   const openProductPopup = (product, utils) => {
     const popup = document.getElementById("productPopup");
     const content = document.getElementById("productPopupContent");
@@ -8,27 +15,27 @@
       <div class="flex flex-col gap-6 sm:flex-row">
         <div class="sm:w-1/2">
           <div class="flex h-full items-center justify-center overflow-hidden rounded-2xl bg-slate-100 p-4">
-            <img src="${product.img || ""}" alt="${product.name || "Product"}" class="h-64 w-full object-contain mix-blend-multiply sm:h-80" />
+            <img src="${product.img || ""}" alt="${product.name || "Sản phẩm"}" class="h-64 w-full object-contain mix-blend-multiply sm:h-80" />
           </div>
         </div>
         <div class="sm:w-1/2">
           <div class="flex items-center justify-between gap-4">
-            <h3 class="text-2xl font-bold text-slate-900">${product.name || "Product"}</h3>
-            <span class="inline-flex items-center rounded-full bg-teal-50 px-2 py-1 text-xs font-bold text-teal-700 ring-1 ring-inset ring-teal-600/20">${utils?.normalizeType?.(product.type) || product.type || "other"}</span>
+            <h3 class="text-2xl font-bold text-slate-900">${product.name || "Sản phẩm"}</h3>
+            <span class="inline-flex items-center rounded-full bg-teal-50 px-2 py-1 text-xs font-bold text-teal-700 ring-1 ring-inset ring-teal-600/20">${getTypeLabel(product.type, utils)}</span>
           </div>
           <p class="mt-4 text-3xl font-bold text-slate-900">${utils?.formatPrice?.(product.price) || "$" + product.price}</p>
           <div class="mt-6 space-y-4">
             <div class="space-y-2">
-              <h4 class="text-xs font-bold uppercase tracking-widest text-slate-500">Specifications</h4>
+              <h4 class="text-xs font-bold uppercase tracking-widest text-slate-500">Thông số kỹ thuật</h4>
               <dl class="grid grid-cols-1 gap-y-2 text-sm">
-                <div class="flex items-start gap-2"><dt class="min-w-28 font-semibold text-slate-600">Screen:</dt><dd class="text-slate-900">${product.screen || "N/A"}</dd></div>
-                <div class="flex items-start gap-2"><dt class="min-w-28 font-semibold text-slate-600">Back Camera:</dt><dd class="text-slate-900">${product.backCamera || "N/A"}</dd></div>
-                <div class="flex items-start gap-2"><dt class="min-w-28 font-semibold text-slate-600">Front Camera:</dt><dd class="text-slate-900">${product.frontCamera || "N/A"}</dd></div>
+                <div class="flex items-start gap-2"><dt class="min-w-28 font-semibold text-slate-600">Màn hình:</dt><dd class="text-slate-900">${product.screen || "Không có"}</dd></div>
+                <div class="flex items-start gap-2"><dt class="min-w-28 font-semibold text-slate-600">Camera sau:</dt><dd class="text-slate-900">${product.backCamera || "Không có"}</dd></div>
+                <div class="flex items-start gap-2"><dt class="min-w-28 font-semibold text-slate-600">Camera trước:</dt><dd class="text-slate-900">${product.frontCamera || "Không có"}</dd></div>
               </dl>
             </div>
             <div class="space-y-2 border-t border-slate-100 pt-4">
-              <h4 class="text-xs font-bold uppercase tracking-widest text-slate-500">Description</h4>
-              <p class="text-sm leading-relaxed text-slate-600">${product.desc || "No description available."}</p>
+              <h4 class="text-xs font-bold uppercase tracking-widest text-slate-500">Mô tả</h4>
+              <p class="text-sm leading-relaxed text-slate-600">${product.desc || "Chưa có mô tả."}</p>
             </div>
           </div>
         </div>

@@ -1,7 +1,7 @@
 // js/admin/core.js
 
 export const BASE_URL =
-  "https://69ca6795ba5984c44bf318fe.mockapi.io/api/v1/phone";
+  "https://69e758d268208c1debe8b731.mockapi.io/api/v1/Products";
 
 export const state = {
   productList: [],

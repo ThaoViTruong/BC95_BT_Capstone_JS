@@ -3,9 +3,16 @@
   let currentPage = 1;
   let currentProducts = [];
 
+  const getTypeLabel = (type, utils) => {
+    const t = utils?.normalizeType ? utils.normalizeType(type) : String(type || "").trim().toLowerCase();
+    if (t === "iphone") return "iPhone";
+    if (t === "samsung") return "Samsung";
+    return "Khác";
+  };
+
   const updateResultText = (els, count) => {
     if (!els?.resultText) return;
-    els.resultText.textContent = `Showing ${count} products`;
+    els.resultText.textContent = `Đang hiển thị ${count} sản phẩm`;
   };
 
   const getTotalPages = () => {
@@ -42,7 +49,7 @@
     const img = document.createElement("img");
     img.className = "h-full w-full object-cover object-center";
     img.src = p.img || "";
-    img.alt = p.name || "Product";
+    img.alt = p.name || "Sản phẩm";
     img.loading = "lazy";
     imageWrap.appendChild(img);
 
@@ -51,11 +58,11 @@
 
     const name = document.createElement("h3");
     name.className = "text-lg font-bold text-slate-900";
-    name.textContent = p.name || "Product name";
+    name.textContent = p.name || "Tên sản phẩm";
 
     const meta = document.createElement("p");
     meta.className = "mt-1 text-xs font-semibold uppercase tracking-widest text-slate-400";
-    meta.textContent = utils.normalizeType(p.type) || "other";
+    meta.textContent = getTypeLabel(p.type, utils);
 
     const price = document.createElement("p");
     price.className = "mt-3 text-sm font-bold text-slate-700";
@@ -67,14 +74,14 @@
     const detailsBtn = document.createElement("button");
     detailsBtn.type = "button";
     detailsBtn.className = "flex-1 inline-flex items-center justify-center gap-2 rounded-full border border-slate-300 bg-white px-4 py-2 text-sm font-semibold text-slate-700 transition hover:bg-slate-100 active:scale-[0.99]";
-    detailsBtn.innerHTML = '<i class="fa-solid fa-eye"></i><span>View details</span>';
+    detailsBtn.innerHTML = '<i class="fa-solid fa-eye"></i><span>Xem chi tiết</span>';
     detailsBtn.dataset.productId = String(p.id ?? "");
     detailsBtn.dataset.action = "details";
 
     const addBtn = document.createElement("button");
     addBtn.type = "button";
     addBtn.className = "flex-1 inline-flex items-center justify-center gap-2 rounded-full bg-slate-900 px-4 py-2 text-sm font-semibold text-white transition hover:bg-slate-800 active:scale-[0.99]";
-    addBtn.innerHTML = '<i class="fa-solid fa-cart-shopping"></i><span>Add to cart</span>';
+    addBtn.innerHTML = '<i class="fa-solid fa-cart-shopping"></i><span>Thêm vào giỏ</span>';
     addBtn.dataset.productId = String(p.id ?? "");
     addBtn.dataset.action = "add";
 
@@ -104,7 +111,7 @@
     if (!currentProducts.length) {
       const empty = document.createElement("div");
       empty.className = "col-span-full rounded-2xl border border-dashed border-slate-300 bg-white p-10 text-center text-slate-500";
-      empty.textContent = "No matching products.";
+      empty.textContent = "Không có sản phẩm phù hợp.";
       els.productGrid.appendChild(empty);
       updateResultText(els, 0);
       renderPagination(els);
@@ -129,13 +136,13 @@
     const totalPages = getTotalPages();
     if (totalPages <= 1) return;
 
-    els.pagination.appendChild(createPageButton({ label: "Previous", page: currentPage - 1, disabled: currentPage <= 1 }));
+    els.pagination.appendChild(createPageButton({ label: "Trước", page: currentPage - 1, disabled: currentPage <= 1 }));
 
     for (let p = 1; p <= totalPages; p++) {
       els.pagination.appendChild(createPageButton({ label: String(p), page: p, active: p === currentPage }));
     }
 
-    els.pagination.appendChild(createPageButton({ label: "Next", page: currentPage + 1, disabled: currentPage >= totalPages }));
+    els.pagination.appendChild(createPageButton({ label: "Sau", page: currentPage + 1, disabled: currentPage >= totalPages }));
   };
 
   const getSelectedType = (els, utils) => {
