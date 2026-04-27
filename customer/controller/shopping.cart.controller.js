@@ -4,6 +4,13 @@
   const SHIPPING_FEE = 0;
   const TAX_RATE = 0;
 
+  const getTypeLabel = (type, utils) => {
+    const t = utils?.normalizeType ? utils.normalizeType(type) : String(type || "").trim().toLowerCase();
+    if (t === "iphone") return "iPhone";
+    if (t === "samsung") return "Samsung";
+    return "Khác";
+  };
+
   const persistCart = () => {
     window.cartStorage?.saveCartSnapshot?.(cart);
   };
@@ -34,7 +41,7 @@
   if (els.cartSubtotal) els.cartSubtotal.textContent = utils.formatPrice(subtotal);
   if (els.cartTax) els.cartTax.textContent = utils.formatPrice(tax);
   if (els.cartShipping) {
-    if ((Number(SHIPPING_FEE) || 0) <= 0) els.cartShipping.textContent = "Free";
+    if ((Number(SHIPPING_FEE) || 0) <= 0) els.cartShipping.textContent = "Miễn phí";
     else els.cartShipping.textContent = utils.formatPrice(SHIPPING_FEE);
   }
   if (els.cartTotal) els.cartTotal.textContent = utils.formatPrice(total);
@@ -56,11 +63,11 @@
 
     const title = document.createElement("div");
   title.className = "mt-4 text-base font-bold text-slate-900";
-  title.textContent = "Your cart is empty";
+  title.textContent = "Giỏ hàng của bạn đang trống";
 
     const desc = document.createElement("p");
   desc.className = "mt-2 text-sm text-slate-500";
-  desc.textContent = "Add products to continue shopping.";
+  desc.textContent = "Thêm sản phẩm để tiếp tục mua sắm.";
 
   wrap.appendChild(icon);
   wrap.appendChild(title);
@@ -98,7 +105,7 @@
     const img = document.createElement("img");
   img.className = "h-full w-full object-cover object-center";
     img.src = product?.img || "";
-    img.alt = product?.name || "Product";
+    img.alt = product?.name || "Sản phẩm";
   img.loading = "lazy";
   imgWrap.appendChild(img);
 
@@ -107,12 +114,12 @@
 
     const name = document.createElement("h4");
   name.className = "truncate text-base font-bold text-slate-900";
-    name.textContent = product?.name || "Product";
+    name.textContent = product?.name || "Sản phẩm";
 
     const meta = document.createElement("p");
   meta.className =
     "mt-1 text-xs font-semibold uppercase tracking-widest text-slate-400";
-    meta.textContent = String(product?.type || "").trim() || "Other";
+    meta.textContent = getTypeLabel(product?.type, utils);
 
     const unit = document.createElement("p");
   unit.className = "mt-3 text-sm font-semibold text-slate-700";
@@ -165,7 +172,7 @@
     "inline-flex items-center gap-2 rounded-full px-3 py-2 text-xs font-semibold text-slate-500 transition hover:bg-slate-100 hover:text-slate-800";
   remove.dataset.action = "remove";
   remove.dataset.productId = productId;
-  remove.innerHTML = '<i class="fa-solid fa-trash-can"></i><span>Remove</span>';
+  remove.innerHTML = '<i class="fa-solid fa-trash-can"></i><span>Xóa</span>';
 
   actions.appendChild(qtyWrap);
   actions.appendChild(sub);
@@ -231,8 +238,8 @@
           cart.decreaseProduct(productId, 1);
         } else if (action === "remove") {
           const idx = cart.findIndexByProductId(productId);
-          const name = idx !== -1 ? cart.items[idx]?.product?.name || "Product" : "Product";
-          const ok = confirm(`Remove "${name}" from your cart?`);
+          const name = idx !== -1 ? cart.items[idx]?.product?.name || "Sản phẩm" : "Sản phẩm";
+          const ok = confirm(`Xóa "${name}" khỏi giỏ hàng?`);
           if (!ok) return;
           cart.removeProduct(productId);
         } else {
@@ -246,7 +253,14 @@
 
     els?.cartCheckoutButton?.addEventListener("click", () => {
       if (els.cartCheckoutButton.disabled) return;
-      alert("Checkout is under development.");
+      
+      if (typeof window.shoppingCheckoutController?.open === "function") {
+        const cartPopup = document.getElementById("cartPopup");
+        if (cartPopup) cartPopup.classList.add("hidden");
+        window.shoppingCheckoutController.open();
+      } else {
+        alert("Chức năng thanh toán đang được phát triển.");
+      }
     });
   };
 
