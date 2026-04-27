@@ -20,14 +20,12 @@ export const setElements = () => {
   elements.frontCamera = document.getElementById("frontCamera");
   elements.desc = document.getElementById("desc");
   elements.type = document.getElementById("type");
-
   elements.btnSave = document.getElementById("btnSave");
   elements.btnUpdate = document.getElementById("btnUpdate");
   elements.btnReset = document.getElementById("btnReset");
-
   elements.keyword = document.getElementById("keyword");
   elements.btnSearch = document.getElementById("btnSearch");
-
+  elements.sortSelect = document.getElementById("sortSelect");
   elements.tableBody = document.getElementById("productTableBody");
   elements.message = document.getElementById("message");
 };
