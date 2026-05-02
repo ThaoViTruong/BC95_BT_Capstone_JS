@@ -1,4 +1,3 @@
-// js/admin/ui-flow.js
 
 import { elements } from "./core.js";
 
