@@ -14,7 +14,7 @@ document.addEventListener("DOMContentLoaded", () => {
     createProduct();
   });
   elements.btnUpdate.addEventListener("click", updateProduct);
-  elements.btnSearch.addEventListener("click", searchProduct);
+  elements.keyword.addEventListener("input", searchProduct);
   elements.sortSelect.addEventListener("change", (e) => {
     if (!e.target.value) return;
     sortByPrice(e.target.value);

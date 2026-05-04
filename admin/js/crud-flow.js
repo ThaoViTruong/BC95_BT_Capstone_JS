@@ -1,4 +1,3 @@
-// js/admin/crud-flow.js
 
 import { BASE_URL, state, elements } from "./core.js";
 import { renderProducts, showMessage } from "./ui-flow.js";
@@ -18,6 +17,7 @@ const getFormData = () => ({
 export const fetchProducts = async () => {
   const res = await axios.get(BASE_URL);
   state.productList = res.data;
+  state.currentList = res.data;
   renderProducts(state.productList);
 };
 
@@ -101,18 +101,25 @@ export const updateProduct = async () => {
 
 // ================= SEARCH =================
 export const searchProduct = () => {
-  const keyword = elements.keyword.value.toLowerCase();
-  const filtered = state.productList.filter((p) =>
-    p.name.toLowerCase().includes(keyword)
-  );
-  renderProducts(filtered);
+  const keyword = elements.keyword.value.toLowerCase().trim();
+
+  if (!keyword) {
+    state.currentList = [...state.productList];
+  } else {
+    state.currentList = state.productList.filter((p) =>
+      p.name.toLowerCase().includes(keyword)
+    );
+  }
+
+  renderProducts(state.currentList);
 };
 
 // ================= SORT =================
 export const sortByPrice = (order) => {
-  const sorted = [...state.productList].sort((a, b) =>
+  const sorted = [...state.currentList].sort((a, b) =>
     order === "asc" ? a.price - b.price : b.price - a.price
   );
+
   renderProducts(sorted);
 };
 

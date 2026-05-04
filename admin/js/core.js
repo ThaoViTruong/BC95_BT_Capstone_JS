@@ -1,4 +1,3 @@
-// js/admin/core.js
 
 export const BASE_URL =
   "https://69e758d268208c1debe8b731.mockapi.io/api/v1/Products";
@@ -6,6 +5,7 @@ export const BASE_URL =
 export const state = {
   productList: [],
   editingId: null,
+  currentList: [],
 };
 
 export const elements = {};
